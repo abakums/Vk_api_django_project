@@ -1,0 +1,11 @@
+{% extends 'homepage.html' %}
+{% block title %} Друзья пользователя с id {{ user_id }} {% endblock %}
+{% block friends %}
+    {% for friend in friends_list %}
+        <div align="center">
+            <p>{{ friend.first_name }} {{ friend.last_name }} (id{{ friend.id }})</p>
+            <p><img src="{{ friend.photo_200_orig }}" alt="Аватар"></p>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

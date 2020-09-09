@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Домашняя страница {% endblock %}</title>
+</head>
+<body>
+<h3 align="center"> Для поиска друзей пользователя из сети vk.com введите его id: </h3>
+<div align="center">
+    <form action="{% url 'user_friends'%}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="user_id"> ID пользователя: </label>
+            <input type="text" name="user_id" id="user_id">
+        </div>
+        <br>
+        <div>
+            <button type="submit"> Найти </button>
+            <button type="reset">Очистить</button>
+        </div>
+    </form>
+</div>
+<br>
+{% if error_message %}
+    <h4 align="center">{{ error_message }}</h4>
+{% endif %}
+{% block friends %}{% endblock %}
+</body>
+</html>
