@@ -3,8 +3,18 @@
 {% block friends %}
     {% for friend in friends_list %}
         <div align="center">
-            <p>{{ friend.first_name }} {{ friend.last_name }} (id{{ friend.id }})</p>
-            <p><img src="{{ friend.photo_200_orig }}" alt="Аватар"></p>
+            <p>{{ friend.first_name }} {{ friend.last_name }} (id{{ friend.id }}, закрытый:
+                {% if friend.is_closed %}
+                    да,
+                {% else %}
+                    нет,
+                {% endif %}
+                количество фотографий в альбоме: {{ friend.photos.count }})
+            </p>
+            <img src="{{ friend.photo_200_orig }}" alt="Аватар">
+            {% for url_photo in friend.photos.photos %}
+                <img src="{{ url_photo }}" alt="Фото{{ forloop.counter }}">
+            {% endfor %}
         </div>
         <br>
     {% endfor %}
